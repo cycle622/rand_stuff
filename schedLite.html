@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <p>
+            <script type="text/javascript">
+                // <![CDATA[
+                //date formulas
+                var d = new Date();
+                var x = d.getDay();
+                var dd = String(d.getDate()).padStart(2, '0');
+                var mm = String(d.getMonth() + 1).padStart(2, '0');
+                var yyyy = d.getFullYear();
+                var today = mm + '/' + dd + '/' + yyyy;
+                var day;
+                console.log(today)
+                switch (x) {
+                    case 0:
+                        day = "Sunday"
+                        break;
+                    case 1:
+                        day = "Monday";
+                        break;
+                    case 2:
+                        day = "Tuesday";
+                        break;
+                    case 3:
+                        day = "Wednesday";
+                        break;
+                    case 4:
+                        day = "Thursday";
+                        break;
+                    case 5:
+                        day = "Friday";
+                        break;
+                    case 6:
+                        day = "Saturday";
+                        break;
+
+                    default:
+                        break;
+                }
+                // ]]>
+            </script>
+        </p>
+        <h1 id="day">Day Today</h1>
+        <h2 id="dayname">Schedule for Today</h2>
+        <div id="sched">
+            <div><a href="#" onclick="monday()">Monday</a> | <a href="#" onclick="tuesday()">Tuesday</a> | <a href="#" onclick="wednesday()">Wednesday</a> | <a href="#" onclick="thursday()">Thursday</a> | <a href="#" onclick="friday()">Friday</a></div>
+            <hr />
+            <ul id="mon" style="display: block;">
+                <li>09-12 - Work Ethics and Values Formation (Maam Ange)</li>
+                <li>12-13 - Breaktime</li>
+                <li>13-17 - Android Development (Sir Dustin)</li>
+            </ul>
+            <ul id="tue" style="display: none;">
+                <li>09-11 - PE (Sir Longcob)</li>
+                <li>11-12 - Form Period (Maam Zena)</li>
+                <li>12-13 - Breaktime</li>
+                <li>13-17 - RDBMS (Sir Xyrus)</li>
+            </ul>
+            <ul id="wed" style="display: none;">
+                <li>09-10 - Homeroom (Sir Winston)</li>
+                <li>10-12 - Javascript (Sir Exxel)</li>
+                <li>12-13 - Breaktime</li>
+                <li>13-17 - Javascript (Sir Exxel)</li>
+            </ul>
+            <ul id="thu" style="display: none;">
+                <li>09-12 - CWTS 2 (Sir Marz)</li>
+                <li>12-13 - Breaktime</li>
+                <li>13-17 - Windows Server (Sir Lunar)</li>
+            </ul>
+            <ul id="fri" style="display: none;">
+                <li>10-12 - System Analysis and Design (Sir Exxel)</li>
+                <li>12-13 - Breaktime</li>
+                <li>13-17 - System Analysis and Design (Sir Exxel)</li>
+            </ul>
+        </div>
+        <p>
+            <script type="text/javascript">
+                // <![CDATA[
+                //get element, useful for styling later
+                var mon = document.getElementById("mon");
+                var tue = document.getElementById("tue");
+                var wed = document.getElementById("wed");
+                var thu = document.getElementById("thu");
+                var fri = document.getElementById("fri");
+                var dname = document.getElementById("dayname");
+
+                document.getElementById('day').innerHTML = today + ', ' + day;
+                switch (x) {
+                    case 0: //day = "Sunday";
+                        mon.style.display = "block";
+                        break;
+                    case 1: //day = "Monday";
+                        mon.style.display = "block";
+                        break;
+                    case 2: //day = "Tuesday";
+                        tue.style.display = "block";
+                        break;
+                    case 3: //day = "Wednesday";
+                        wed.style.display = "block";
+                        break;
+                    case 4: //day = "Thursday";
+                        thu.style.display = "block";
+                        break;
+                    case 5: //day = "Friday";
+                        fri.style.display = "block";
+                        break;
+                    case 6: //day = "Saturday";
+                        mon.style.display = "block";
+                        break;
+
+                    default:
+                        break;
+                }
+
+                function monday() {
+                    dname.innerHTML = "Schedule for Monday";
+                    mon.style.display = "block";
+                    tue.style.display = "none";
+                    wed.style.display = "none";
+                    thu.style.display = "none";
+                    fri.style.display = "none";
+                }
+
+                function tuesday() {
+                    dname.innerHTML = "Schedule for Tuesday";
+                    mon.style.display = "none";
+                    tue.style.display = "block";
+                    wed.style.display = "none";
+                    thu.style.display = "none";
+                    fri.style.display = "none";
+                }
+
+                function wednesday() {
+                    dname.innerHTML = "Schedule for Wednesday";
+                    mon.style.display = "none";
+                    tue.style.display = "none";
+                    wed.style.display = "block";
+                    thu.style.display = "none";
+                    fri.style.display = "none";
+                }
+
+                function thursday() {
+                    dname.innerHTML = "Schedule for Thursday";
+                    mon.style.display = "none";
+                    tue.style.display = "none";
+                    wed.style.display = "none";
+                    thu.style.display = "block";
+                    fri.style.display = "none";
+                }
+
+                function friday() {
+                    dname.innerHTML = "Schedule for Friday";
+                    mon.style.display = "none";
+                    tue.style.display = "none";
+                    wed.style.display = "none";
+                    thu.style.display = "none";
+                    fri.style.display = "block";
+                }
+                // ]]>
+            </script>
+        </p>
+    </body>
+</html>

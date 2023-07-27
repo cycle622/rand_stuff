@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Increment</title>
+</head>
+
+<body>
+    <h1>Hello</h1>
+    <button id="btn1" onclick="fn1()">Increment</button>
+    <br>
+    <button id="btn2" onclick="fn2()">Modify Element</button>
+    <p id="txt1">Text to be modified</p>
+    <script>
+        let a = 0;
+
+        function fn1() {
+            console.log('Hello! a = ' + (a++));
+        }
+
+        function fn2() {
+            let p1 = document.getElementById('txt1');
+            p1.style.backgroundColor = '#1A3B40';
+            p1.style.color = '#e6e6e6';
+            p1.innerHTML = 'This text is now modified...';
+        }
+    </script>
+</body>
+
+</html>

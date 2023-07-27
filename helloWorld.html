@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Start</title>
+</head>
+
+<body>
+    <p>Before...</p>
+    <script>
+        document.body.style.background = "lightblue"; //DOM: change background
+        let message = 'Hello World'; //variable
+        alert(message); //alert function
+
+        //declaring variables
+        let a = 0,
+            b = 1,
+            c = 2,
+            d = 10.06;
+        let msg = "",
+            msgx = '';
+        let bool = true,
+            boolx = false;
+        let arr1 = ["item01", "item02", "item03"];
+        let arrx = ["item02"];
+
+        /* Operators as usual
+            + - * /
+            && || !
+        */
+        //if statement
+        if (bool && boolx) {
+            alert("Both true");
+        } else {
+            alert("One or both are false");
+        }
+
+        //for loop
+        for (let i = 0; i < 3; i++) {
+            alert(arr1[i]);
+        }
+
+
+        //switch case
+        switch (b) {
+            case 1:
+                alert("B is 1");
+                break;
+
+            default:
+                break;
+        }
+
+        console.log("We're in Devtools baby!!")
+    </script>
+    <p>...After</p>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Remove</title>
+</head>
+
+<body>
+    <p>Add-remove element</p>
+    <input type="text" name="string" id="string">
+    <a href='#' id="btn-add">Add Element</a>&emsp;
+    <a href="#" onclick="add_element()">Add element alt</a>
+    <hr>
+    <div id="container">
+        <!-- something happens! -->
+    </div>
+    <script>
+        document.write(navigator.userAgent);
+        var btn_add = document.getElementById('btn-add');
+        var container = document.getElementById('container');
+        var ctr = 0;
+
+        btn_add.onclick = function() {
+            var add_element = document.createElement('div');
+            var add_button = document.createElement('button');
+            var extra_msg = document.getElementById('string').value;
+            //continer properties
+            add_element.setAttribute("id", "item" + ctr); //give the container a unique id
+            add_element.innerHTML = "Hello " + extra_msg + "!";
+
+            //button properties
+            add_button.setAttribute("id", "btn" + ctr); //give the button a unique id
+            add_button.innerHTML = "Remove";
+            add_button.addEventListener("click", function(elem) {
+                remove(elem);
+            });
+
+            //element append
+            container.append(add_element); //append add_element inside container
+            add_element.append(add_button); //append add_button inside add_element
+            add_element.append(document.createElement('br'));
+            ctr++;
+        }
+
+        function remove(btn) {
+            let btnID = btn.target.getAttribute("id"); // a button has an ID
+
+            //get the button ID and replace it to get the ID of the parent container
+            let div = btnID.replace("btn", "item");
+
+            let matched = document.getElementById(div);
+            matched.remove();
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gradebook</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <style>
+        #container {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div>
+            <h1>Gradebook</h1>
+        </div>
+        <div>
+            <button class="btn btn-success btn-sm" id="btnPlus">+</button>
+        </div>
+        <br />
+        <div>
+            <table id="main-table" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>Student</td>
+                        <td>Quizzes</td>
+                        <td>Exams</td>
+                        <td>Grade</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+    let btnPlus = document.getElementById("btnPlus");
+    let tableBody = document.getElementById("tableBody");
+    let ctr = 1;
+
+    btnPlus.onclick = function() {
+        let tr = document.createElement("tr");
+
+        // create five loops (5 columns)
+        for (let i = 1; i <= 5; i++) {
+            let td = document.createElement("td");
+            let child = "";
+
+            if (i < 4) {
+                child = document.createElement("input");
+                child.setAttribute("type", "text");
+                child.setAttribute("class", "form-control");
+
+                let inpName = "";
+
+                if (i == 1) {
+                    inpName = "studName";
+                } else if (i == 2) {
+                    inpName = "studQuizzes";
+                    child.addEventListener("change", function(e) {
+                        checkQuiz(e);
+                    });
+                } else if (i == 3) {
+                    inpName = "studExams";
+                }
+
+                child.setAttribute("name", inpName + "[]");
+            } else if (i == 4) {
+                child = document.createElement("b");
+                child.setAttribute("id", "lblGrade-" + ctr);
+                child.innerHTML = ctr + ".00";
+            } else {
+                child = document.createElement("button");
+                child.setAttribute("id", "btnDel-" + ctr);
+                child.setAttribute("class", "btn btn-danger btn-sm");
+                child.innerHTML = "-";
+
+                child.addEventListener("click", function(elem) {
+                    // elem is the clicked element, which is yung button
+                    deleteRow(elem);
+                });
+            }
+
+            td.append(child);
+            tr.append(td);
+        }
+
+        tr.setAttribute("id", "tr-" + ctr);
+
+        ctr++;
+
+        tableBody.append(tr);
+    };
+
+    function checkQuiz(inp) {
+        // console.log(inp.target.value);
+        if (+inp.target.value < 0) {
+            inp.target.value = 0;
+            alert("Value must be a positive number.");
+        }
+    }
+
+    function deleteRow(btn) {
+        // console.log("deleting...");
+        // console.log(btn.target.getAttribute("id"));
+
+        let btnId = btn.target.getAttribute("id"); // btnDel-1
+
+        let tr = btnId.replace("btnDel", "tr"); // append first the "tr"
+        console.log(tr);
+
+        //remove(element)
+        let matchedRow = document.getElementById(tr);
+        matchedRow.remove();
+    }
+</script>
+
+</html>
+
+<!-- 
+
+  $_POST["studName"] = array(
+    "kyle", "calvin", "uriven"
+  )
+
+ -->

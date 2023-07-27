@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Buy T-shirt</title>
+    <style>
+        * {
+            font-family: "Verdana";
+        }
+        
+        .box {
+            border: 1px solid gray;
+            border-radius: 3px;
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            margin: 5px 8px;
+            cursor: pointer;
+        }
+        
+        .box-black {
+            background: black;
+        }
+        
+        .box-blue {
+            background: blue;
+        }
+        
+        .box-green {
+            background: green;
+        }
+        
+        .box-pink {
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>T-shirt</h1>
+    <div style="text-align: center;">
+        <img src="tshirt_black.png" id="tshirt-img">
+    </div>
+    <hr>
+    <div>
+        <div style="text-align: center;">
+            <div class="box box-black" onmouseover="changeColor('black')"></div>
+
+            <div class="box box-blue" onmouseover="changeColor('blue')"></div>
+
+            <div class="box box-green" onmouseover="changeColor('green')"></div>
+
+            <div class="box box-pink" onmouseover="changeColor('pink')"></div>
+        </div>
+        <div style="text-align: center;">
+            <p>Price: P<span id="price">399</span></p>
+            <div>
+                <button onclick="compute('minus')">-</button>
+                <span id="qty">0</span>
+                <button onclick="compute('plus')">+</button>
+            </div>
+            <p>
+                Subtotal: P<span id="subtotal">0</span>
+            </p>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+
+    <script>
+        let price = 399,
+            qty = 0,
+            subtotal = 0;
+        let priceColor = [0, 10, 25, 40];
+
+
+        let spanQty = document.getElementById('qty');
+        let spanPrice = document.getElementById('price');
+        let spanSubtotal = document.getElementById('subtotal');
+        let tshirtImg = document.getElementById('tshirt-img');
+
+
+        function compute(oper) {
+
+            if (oper == 'minus' && qty > 0) {
+                qty--;
+            } else if (oper == 'plus' && qty < 10) {
+                qty++;
+            }
+
+            computeSubtotal();
+        }
+
+        function computeSubtotal() {
+            subtotal = qty * price;
+
+            spanQty.innerHTML = qty;
+            spanSubtotal.innerHTML = subtotal;
+        }
+
+        function changeColor(color) {
+            // alert('you hovered on: ' + color);
+
+
+            if (color == 'black') {
+                tshirtImg.src = 'tshirt_black.png';
+                price = 399 + priceColor[0];
+            } else if (color == 'blue') {
+                tshirtImg.src = 'tshirt_blue.png';
+                price = 399 + priceColor[1];
+            } else if (color == 'green') {
+                tshirtImg.src = 'tshirt_green.png';
+                price = 399 + priceColor[2];
+            } else if (color == 'pink') {
+                tshirtImg.src = 'tshirt_pink.png';
+                price = 399 + priceColor[3];
+            }
+
+
+            subtotal = qty * price;
+
+
+            computeSubtotal();
+            //tshirtImg.src = 'tshirt_' + color + '.png';
+        }
+    </script>
+</body>
+
+</html>
