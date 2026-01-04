@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Legacy Web App</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <meta name="apple-mobile-web-app-title" content="MyRetroApp">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica;
+            background: linear-gradient(180deg, #1e1e1e 0%, #000000 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .status-indicator {
+            padding: 10px 20px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: #007AFF;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="status-indicator" id="mode-text">Checking Mode...</div>
+        <h1>Legacy UI</h1>
+        <p><em>Wow, so Retro</em></p>
+        <p>If you see the Safari URL bar, you are in the browser.</p>
+        <p>Tap <strong>Share > Add to Home Screen</strong> to see the "Web App" magic.</p>
+        
+        <a href="https://www.google.com" style="color: #0a84ff; display: block; margin-top: 20px;">
+            External Link (Will open Safari)
+        </a>
+    </div>
+
+    <script>
+        // Check if we are running in standalone mode
+        if (window.navigator.standalone === true) {
+            document.getElementById('mode-text').innerText = "✅ Running in Standalone Mode";
+            document.getElementById('mode-text').style.backgroundColor = "#28a745";
+        } else {
+            document.getElementById('mode-text').innerText = "❌ Running in Safari Browser";
+        }
+
+        // The "Fix" to keep internal links from opening Safari
+        document.addEventListener('click', function(e) {
+            var target = e.target;
+            while (target && target.tagName !== 'A') {
+                target = target.parentNode;
+            }
+            if (target && target.getAttribute('href') && target.hostname === window.location.hostname) {
+                e.preventDefault();
+                window.location.href = target.getAttribute('href');
+            }
+        }, false);
+    </script>
+</body>
+</html>
